@@ -1,0 +1,87 @@
+.modifProfil{margin-top: 30px;
+  text-align: center;
+}
+
+.modifProfil p{
+  font: bold italic large serif;
+  font-size:xx-large;
+}
+
+  .background {
+    border-radius: 5px;
+    background-color: darkcyan;
+    min-height: 325px;
+    max-width: 800px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    }
+    
+  #infosPerso {
+    padding-top: 15px;
+    line-height: 28px;
+    font-size: 24px;
+    color: whitesmoke;
+    font-weight: 450;
+    margin-bottom: 14px;
+  }
+  
+  .profileForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .menu {
+  border-radius: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+  background-color: #e7e7e7;
+  box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);
+  margin-bottom: 10px;
+  margin-top: 10px;
+  }
+
+  .boutonEdition{
+      background-color: coral;
+      color: white;
+  }
+
+  /**Modification du profil*/
+  .example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+
+  .modif {
+    border-radius: 5px;
+    max-width: 650px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #e7e7e7;
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);
+    margin-bottom: 10px;
+    margin-top: 20px;
+    }
+
+    .boutonAnnuler{
+        background-color: red;
+        color: white;
+        margin-right: 15px;
+        margin-bottom: 10px;
+    }
+
+    .boutonEnregistrer{
+        background-color: limegreen;
+        color: white;
+        margin-bottom: 10px;
+    }

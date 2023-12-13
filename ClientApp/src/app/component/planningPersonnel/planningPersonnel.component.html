@@ -1,0 +1,178 @@
+<div class="mescreneau">
+    <p>Mon planning de rendez-vous</p>
+</div>
+
+<!--Si non connecté-->
+<ng-container *ngIf="!(authService.user$ | async)">
+    <div class="mescreneaux">
+        <p>Pour consulter vos rendez-vous, vous devez être connecté(e)!</p>
+        <p>Pour cela, cliquez <a class="link" [routerLink]="['/', AppRoutingEnum.ChoosePortal]">ici</a></p>
+    </div>
+</ng-container>
+
+<!--Si connecté-->
+<ng-container *ngIf="(authService.user$ | async)">
+    <button mat-raised-button class="boutonCreer" (click)="creerCreneau()">
+        <mat-icon>event</mat-icon>
+        <ng-container *ngIf="!afficherCreerCreneau">Créer un créneau</ng-container>
+        <ng-container *ngIf="afficherCreerCreneau">Fermer la création de créneau</ng-container>
+    </button>
+
+    <div class="creerCreneau" *ngIf="afficherCreerCreneau">
+        <mat-card>
+            <mat-vertical-stepper [linear]="true" #stepper>
+                <mat-step [stepControl]="FormGroup1">
+                    <form [formGroup]="FormGroup1">
+                        <div>
+                            <ng-template matStepLabel>Sélectionnez une date de visioconférence</ng-template>
+                            <mat-form-field appearance="fill">
+                                <mat-label>Choisissez une date</mat-label>
+                                <input matInput type="date" formControlName="date">
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <button mat-button matStepperNext>Suivant</button>
+                        </div>
+                    </form>
+                </mat-step>
+                <mat-step [stepControl]="FormGroup2">
+                    <form [formGroup]="FormGroup2">
+                        <div>
+                            <ng-template matStepLabel>Sélectionnez une heure de visioconférence</ng-template>
+
+                            <mat-form-field appearance="fill">
+                                <mat-label>heures</mat-label>
+                                <mat-select formControlName="heure" (selectionChange)="selectHeure($event)">
+                                    <mat-option *ngFor="let heure of heures" value="{{heure}}">{{heure}}h</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="fill">
+                                <mat-label>minutes</mat-label>
+                                <mat-select formControlName="minute" (selectionChange)="selectMin($event)">
+                                    <mat-option *ngFor="let minute of minutes" value="{{minute}}">{{minute}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+
+                        </div>
+                        <div>
+                            <button mat-button matStepperPrevious>Précédent</button>
+                            <button mat-button (click)="stepper.reset()">Annuler</button>
+                            <button mat-button matStepperNext (click)="validerCreneau()">Valider</button>
+                        </div>
+                    </form>
+                </mat-step>
+            </mat-vertical-stepper>
+        </mat-card>
+    </div>
+
+    <nav class="semaine">
+        <button mat-raised-button class="choixSemaine" (click)="semainePrecedente()">
+            <mat-icon>keyboard_arrow_left</mat-icon>
+        </button>
+        <h2 class="choixSemaineTitle">
+            Semaine du {{ dateDebutSemaine | date:'dd/MM/yyyy' }} au {{ dateFinSemaine | date:'dd/MM/yyyy' }}
+        </h2>
+        <button mat-raised-button class="choixSemaine" (click)="semaineSuivante()">
+            <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
+    </nav>
+    <ng-container *ngIf="!presenceCreneau()">
+        <!--ngIf pas de rendez vous sur la semaine-->
+
+        <div class="mesrdvs">
+            <p>Vous n'avez pas encore déclaré de créneau pour cette semaine!</p>
+            <p>Pour déclarer un créneau cliquez sur le bouton "Créer un créneau" en haut de la page!</p>
+        </div>
+
+    </ng-container>
+    <!--ngif rendez vous sur la semaine-->
+    <ng-container *ngIf="presenceCreneau()">
+        <!--<div *ngFor="let rdv of rendezvous"> avec rendez-vous triés-->
+        <ng-container *ngFor="let creneau of creneauRDVSemaine; let i = index">
+            <mat-card class="creneau">
+                <mat-card-header>
+                    <mat-card-title>
+                        <mat-icon>event</mat-icon> Rendez-vous le {{creneau.creneau.dateCreneau | date:'dd/MM/yyyy'}}
+                        <mat-icon>query_builder</mat-icon> à {{creneau.creneau.dateCreneau | date:'h:mm'}}
+                    </mat-card-title>
+                    <ng-container *ngIf="!creneauDisponible(i)">
+                        <mat-card-content class="etatReservation">
+                            <!--si créneau disponible -->
+                            <div class="disponible">
+                                Disponible
+                            </div>
+                        </mat-card-content>
+                    </ng-container>
+                    <ng-container *ngIf="creneauDisponible(i)">
+                        <mat-card-content class="etatReservation">
+                            <!--si créneau indisponible-->
+                            <div class="indisponible">
+                                Indisponible
+                            </div>
+                        </mat-card-content>
+                    </ng-container>
+                </mat-card-header>
+                <!--<ng-container *ngIf="creneauDisponible(i)">-->
+                <mat-card-actions>
+                    <button mat-raised-button class="boutonRefuse" data-toggle="modal" data-target="#annulerRendezVous">
+                        <mat-icon>event_busy</mat-icon> Refuser le rendez-vous
+                    </button>
+                    <button mat-raised-button class="boutonValide" data-toggle="modal" data-target="#validerRendezVous">
+                        <mat-icon>event_available</mat-icon> Valider le rendez-vous
+                    </button>
+                </mat-card-actions>
+            <!--</ng-container>-->
+            </mat-card>
+            
+        <!-- Modal Annuler le rendez-vous-->
+        <div class="modal fade" id="annulerRendezVous" tabindex="-1" role="dialog" aria-labelledby="annulerRendezVousLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="annulerRendezVousLabel">Confirmation de refus de rendez-vous</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Êtes-vous sûr de vouloir refuser le rendez-vous?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btnConfirmation" (click)="annulerRendezVous(creneau.creneau.idCreneau)">Confirmer le refus du rendez vous</button>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <!-- Modal valider le rendez-vous-->
+        <div class="modal fade" id="validerRendezVous" tabindex="-1" role="dialog" aria-labelledby="validerRendezVousLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="validerRendezVousLabel">Confirmation de validation du rendez-vous
+                    </h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Êtes-vous sûr de vouloir valider le rendez-vous?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btnConfirmation" (click)="validerRendezVous(creneau.creneau.idCreneau)" >Confirmer l'annulation</button>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        </ng-container>
+
+    </ng-container>
+</ng-container>

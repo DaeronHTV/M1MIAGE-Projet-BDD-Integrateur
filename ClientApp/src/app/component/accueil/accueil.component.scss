@@ -1,0 +1,53 @@
+.accueil{margin-top: 30px;
+    text-align: center;
+}
+
+.accueil p, .textimg{
+    font: bold italic large serif;
+    font-size:xx-large;
+}
+
+.prenom{
+    font: bold large serif;
+    font-size:x-large;
+}
+
+.ville{
+    font: italic large serif;
+    font-size:medium;
+}
+
+.commentaire{
+    font: large serif;
+    font-size:large;
+}
+
+.example-card {
+    margin: 5px;
+    height: 170px;
+    max-width: 400px;
+  }
+  
+  .example-header-image1 {
+    background-image: url("https://alenvi.io/wp-content/uploads/2019/10/psychologie-des-personnes-agees-face-a-perte-autonomie.jpg");
+    background-size: cover;
+    background-position: 20% 75%;
+  }
+  .example-header-image2 {
+    background-image: url('https://www.indexsante.ca/chroniques/images/exercice-personne-agee.jpg');
+    background-size: cover;
+  }
+  .example-header-image3 {
+    background-image: url('https://www.30millionsdamis.fr/uploads/pics/conseils-erreurs-chat-1171.jpg');
+    background-size: cover;
+    background-position: 20% 75%;
+  }
+
+  .img{
+      text-align: center;
+  }
+
+  .imgcovid{
+    width: 90%;
+    height: auto;
+  }

@@ -1,0 +1,59 @@
+.mesrdv, .mesrdvs{margin-top: 30px;
+    text-align: center;
+}
+
+.mesrdv p{
+    font: bold italic large serif;
+    font-size:xx-large;
+}
+
+.mesrdvs p{
+    font: bold italic large serif;
+    font-size:x-large;
+}
+
+.lien{
+    color: darkcyan;
+}
+
+.rdv{
+    min-width: 700px;
+}
+
+/**Etat d'une réservation*/
+.etatReservation{
+    float: right;
+}
+
+.reserve{
+    padding:5px;
+    margin-left: 200px;
+    background-color: darkcyan;
+}
+
+.valide{
+    padding:5px;
+    margin-left: 200px;
+    background-color:chartreuse;
+}
+
+.refuse{
+    padding:5px;
+    margin-left: 200px;
+    background-color:red;
+}
+
+.termine{
+    padding:5px;
+    margin-left: 200px;
+    background-color: coral;
+}
+
+.btnConfirmation{
+    background-color: coral;
+    color: white;
+}
+
+.invite p{
+    font: italic medium serif;
+}

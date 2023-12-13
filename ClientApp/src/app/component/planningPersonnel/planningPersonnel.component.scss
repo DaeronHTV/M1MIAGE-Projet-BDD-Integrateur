@@ -1,0 +1,111 @@
+.mescreneau,
+.mescreneaux {
+    margin-top: 30px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.mescreneau p {
+    font: bold italic large serif;
+    font-size: xx-large;
+}
+
+.mescreneaux p {
+    font: bold italic large serif;
+    font-size: x-large;
+}
+
+.lien {
+    color: darkcyan;
+}
+
+.choixSemaine {
+    background-color: coral;
+    display: inline;
+    margin-bottom: 10px;
+}
+
+.choixSemaineTitle {
+    display: inline;
+}
+
+.semaine {
+    margin-bottom: 15px;
+    display: block;
+    width: fit-content;
+    margin: auto;
+}
+
+.boutonValide {
+    background-color: chartreuse;
+    margin-right: 10px;
+}
+
+.boutonRefuse {
+    background-color: red;
+    margin-right: 10px;
+}
+
+.boutonDeplace {
+    background-color: coral;
+}
+
+.creneau {
+    min-width: 700px;
+}
+
+/**Création de créneau de rendez-vous*/
+.boutonCreer {
+    background-color: darkcyan;
+    margin-bottom: 15px;
+    margin-left: 10px;
+}
+
+.creneau {
+    margin-bottom: 15px;
+}
+
+.creerCreneau {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.mat-form-field {
+    margin-top: 16px;
+    margin-left: 3px;
+}
+
+/*Changer le couleur de l'icone du form */
+::ng-deep .mat-step-header .mat-step-icon {
+    background-color: rgb(58, 139, 112);
+}
+
+::ng-deep .mat-step-header .mat-step-icon-state-done,
+::ng-deep .mat-step-header .mat-step-icon-state-edit {
+    background-color: rgb(223, 159, 63);
+}
+
+/**Etat d'une réservation*/
+.etatReservation {
+    float: right;
+}
+
+.disponible{
+    padding:5px;
+    margin-left: 200px;
+    background-color: greenyellow;
+}
+
+.indisponible{
+    padding:5px;
+    margin-left: 200px;
+    background-color: cadetblue;
+}
+
+.btnConfirmation {
+    background-color: coral;
+    color: white;
+}

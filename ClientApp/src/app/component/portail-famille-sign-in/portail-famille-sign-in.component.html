@@ -1,0 +1,103 @@
+<form #loginForm="ngForm" class="form-sign-in" (ngSubmit)="submit(loginForm)">
+
+    <h1>Inscrivez vous !</h1>
+
+    <div *ngIf="(this.authService.user$ | async) != null && user == null">
+        <mat-form-field class="form-group">
+            <mat-label>Nom</mat-label>
+            <input matInput type="text" name="name" [ngModel]="" #name="ngModel" required />
+            <mat-error *ngIf="name.errors as errors">
+              <ng-container *ngIf="errors.required">Ce champs est requis</ng-container>
+            </mat-error>
+        </mat-form-field>
+        
+        <mat-form-field class="form-group">
+            <mat-label>Prenom</mat-label>
+            <input matInput type="text" name="firstName" [ngModel]="" #firstName="ngModel" required />
+            <mat-error *ngIf="firstName.errors as errors">
+              <ng-container *ngIf="errors.required">Ce champs est requis</ng-container>
+            </mat-error>
+        </mat-form-field>
+    
+        <mat-form-field class="form-group">
+            <mat-label>Numéro de téléphone</mat-label>
+            <input matInput type="text" maxlength="10" name="phone" [ngModel]="" #phone="ngModel" required />
+            <mat-error *ngIf="phone.errors as errors">
+              <ng-container *ngIf="errors.required">Ce champs est requis</ng-container>
+            </mat-error>
+        </mat-form-field>
+    
+        <mat-form-field class="form-group">
+            <mat-label>Adresse mail</mat-label>
+            <input matInput type="text" name="email" disabled="disabled" [ngModel]="(authService.user$ | async)?.mail" #email="ngModel" required />
+            <mat-error *ngIf="email.errors as errors">
+              <ng-container *ngIf="errors.required">Ce champs est requis</ng-container>
+            </mat-error>
+        </mat-form-field>
+
+        <h2>Infos résident</h2>
+        <p>Mettez toutes les informations en majuscule et sans accent!</p>
+        <mat-form-field class="form-group">
+            <mat-label>Nom résident</mat-label>
+            <input matInput type="text" name="nomResident" [ngModel]="" #nomResident="ngModel" required />
+            <mat-error *ngIf="nomResident.errors as errors">
+              <ng-container *ngIf="errors.required">Ce champs est requis</ng-container>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-group">
+            <mat-label>Prénom résident</mat-label>
+            <input matInput type="text" name="prenomResident" [ngModel]="" #prenomResident="ngModel" required />
+            <mat-error *ngIf="prenomResident.errors as errors">
+              <ng-container *ngIf="errors.required">Ce champs est requis</ng-container>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="form-group">
+            <mat-label>Etablissement du résident</mat-label>
+            <input matInput type="text" name="etablissementResident" [ngModel]="" #etablissementResident="ngModel" required />
+            <mat-error *ngIf="etablissementResident.errors as errors">
+              <ng-container *ngIf="errors.required">Ce champs est requis</ng-container>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Date de naissance</mat-label>
+            <input matInput name="dateNaissance" [matDatepicker]="picker" #dateNaissance [ngModel]="">
+            <mat-error *ngIf="dateNaissance.errors as errors">
+                <ng-container *ngIf="errors.required">Ce champs est requis</ng-container>
+            </mat-error>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    
+        <button 
+            class="submit-form-button"
+            mat-stroked-button 
+            type="submit"
+        >
+            S'inscrire
+        </button>
+    </div>
+    
+
+    <div class="register-media" *ngIf="(this.authService.user$ | async) == null">
+        <button 
+            class="register-media__item"
+            mat-stroked-button 
+            type="button" 
+            (click)="loginTwitter()"
+        >
+            Inscription via Twitter
+        </button>
+        <button 
+            class="register-media__item"
+            mat-stroked-button 
+            type="button" 
+            (click)="loginGoogle()"
+        >
+            Inscription via Google
+        </button>
+    </div>
+</form>
+

@@ -1,0 +1,35 @@
+  footer{ background:linear-gradient(rgb(255, 255, 255),rgb(255, 133, 33));position: absolute;left: 0;right: 0;min-height: 150px; margin-top: 0px;
+    align-items: center;}
+/*  footer a{color: white;align-items: center;}
+  footer a:hover{color: black;}
+*/
+  .footer{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+    margin-right: 100px;
+    margin-left: 70px;
+  }
+
+  footer ul{
+    list-style: none;
+  }
+
+  .footer div{
+    text-align: center;
+    margin-top: 40px;
+  }
+
+  .content {
+    display: flex;
+    margin: 1px auto 1px;
+    max-width: 90%;
+    min-height: 370px;
+    flex-direction: column;
+    background-color: white;
+  }
+  
+  .btn{
+    color: rgba(0, 0, 0, 0.795);
+  }

@@ -1,0 +1,59 @@
+<div class="aide">
+    <p>Besoin d'aide ?</p>
+</div>
+
+<div class="aides">
+    <p>Vous avez une question? Regardez si vous trouvez votre réponse ci-dessous,</p>
+    <p>Sinon contactez-nous via <a class="link" [routerLink]="['/', AppRoutingEnum.Contact]">ce formulaire</a></p>
+</div>
+
+<div class="questions">
+    <p>Comment créer un compte VisioPAd?</p>
+</div>
+
+<div class="reponses">
+    <p>Pour créer un compte VisioPAd, il vous suffit de vous rendre sur le <a class="link" [routerLink]="['/', AppRoutingEnum.ChoosePortal]"> formulaire de création de compte</a>. Suite à cela, nous vous demanderons votre nom, prénom, adresse e-mail,
+        ainsi que le nom de l'établissement Ehpad et le nom du résident dont vous souhaitez être en contact. Une demande
+        de création de compte sera alors envoyée à l'établissement concerné, qui validera ou non votre compte.
+    </p>
+</div>
+
+<div class="questions">
+    <p>Comment prendre un rendez-vous?</p>
+</div>
+
+<div class="reponses">
+    <p>Pour prendre rendez-vous, il vous suffit de vous rendre sur la page <a class="link" [routerLink]="['/', AppRoutingEnum.Rendezvous]"> de réservation de rendez-vous.</a> Suite à cela, nous vous proposerons de choisir un résident parmis ceux
+        rattachés à votre compte, puis de choisir un créneau parmi les diposnibilités proposées. Si des invités ont
+        prévus de se joindre à vous pour la visioconférence, il vous suffira d'indiquer leurs noms, prénoms et adresses
+        emails, afin que nous puissions leurs envoyer un mail de confirmation. Pour finir, il vous faudra valider votre
+        demande afin que la réservation du ou des rendez-vous soient envoyée à l'établissement pour validation ou
+        refus.
+    </p>
+</div>
+
+<div class="questions">
+    <p>Comment annuler une réservation / un rendez-vous?</p>
+</div>
+
+<div class="reponses">
+    <p>Pour annuler un rendez-vous, il vous suffit de vous rendre sur la page
+        <a class="link" [routerLink]="['/', AppRoutingEnum.MyRendezvous]"> "Mes Rendez-vous".</a>
+        Cherchez le rendez-vous concerné puis cliquer sur "Annuler une réservation" ou "Annuler un rendez-vous" (cela
+        dépend de l'avancée de votre réservation). Vous devrez alors confirmez l'annulation, puis vous recevrez un mail
+        de confirmation d'annulation.
+        À savoir: si des invités sont prévus, alors le rendez-vous est annulé seulement pour vous, il reste donc réservé
+        pour les invités avec le/la résident(e) concerné.
+    </p>
+</div>
+
+<div class="img">
+    <div class="textimg">
+        <p>
+            <mat-icon class="icone">report_problem</mat-icon> N'oublions pas, le virus circule toujours, continuons de
+            nous protéger et de protéger les autres.
+            Continuons de lutter ensemble, afin de pouvoir à nouveau se retrouver!
+        </p>
+    </div>
+    <img class="imgcovid" src="../assets/pictures/covid.png" alt="" />
+</div>

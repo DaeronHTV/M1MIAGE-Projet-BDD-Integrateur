@@ -1,0 +1,137 @@
+<!--Si non connecté-->
+<ng-container *ngIf="!(authService.user$ | async)">
+    <div class="rdv">
+        <p>Pour réserver un rendez-vous, vous devez être connecté(e)!</p>
+        <p>Pour cela, cliquez <a class="link" [routerLink]="['/', AppRoutingEnum.ChoosePortal]">ici</a> pour vous
+            connecter ou pour créer
+            un compte.</p>
+    </div>
+</ng-container>
+
+<!--Si ngIf connecté-->
+<ng-container *ngIf="(authService.user$ | async)">
+    <div class="rdv">
+        <p>Pour réserver un rendez-vous, il vous suffit de remplir le formulaire suivant!</p>
+    </div>
+    <mat-card>
+        <mat-vertical-stepper [linear]="true" #stepper>
+            <mat-step [stepControl]="FormGroup1">
+                <form [formGroup]="FormGroup1">
+                    <ng-template matStepLabel>Choisissez un(e) résident(e):</ng-template>
+                    <mat-form-field appearance="fill">
+                        <mat-select formControlName="nomResident" (selectionChange)="selectResident($event)">
+                            <mat-option *ngFor="let res of residents" [value]="res.resident.idResident">
+                                {{res.resident.prenom}} {{res.resident.nom}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <div>
+                        <button mat-button matStepperNext>Suivant</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="FormGroup2">
+                <form [formGroup]="FormGroup2">
+                    <div>
+                        <ng-template matStepLabel>Sélectionnez un créneau de visioconférence</ng-template>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Choisissez une date</mat-label>
+                            <mat-select formControlName="date" [(ngModel)]="date"
+                                (selectionChange)="selectDate($event)">
+                                <mat-option *ngFor="let creneau of creneauPersonnelResident"
+                                    [value]="creneau.dateCreneau.date">{{creneau.dateCreneau.date}}
+                                </mat-option>
+                            </mat-select>
+                            <!--
+                        <input matInput [min]="dateMin" [max]="dateMax" [matDatepicker]="picker" formControlName="date"
+                            [(ngModel)]="date">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                        -->
+                        </mat-form-field>
+                    </div>
+                    <span *ngIf="date">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Choisissez une heure</mat-label>
+                            <mat-select formControlName="heure" [(ngModel)]="selectedHeure"
+                                (selectionChange)="selectHeure($event)">
+                                <mat-option *ngFor="let heure of heureDispoDate" [value]="heure">{{heure}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </span>
+                    <div>
+                        <button mat-button matStepperPrevious>Précédent</button>
+                        <button mat-button matStepperNext>Suivant</button>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="invite" optional>
+                <form [formGroup]="user" (ngSubmit)="submit()">
+                    <ng-container formArrayName="invite">
+                        <button mat-mini-fab color="primary" (click)="addInvite()">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                        <div *ngFor="let formGroup of invite.controls; index as i">
+                            <ng-template matStepLabel>Ajoutez des invités</ng-template>
+                            <ng-container [formGroupName]="i">
+                                <mat-form-field class="invite">
+                                    <mat-label>Nom</mat-label>
+                                    <input matInput placeholder="Nom" formControlName="nom">
+                                    <mat-error *ngIf="formGroup.controls.nom.errors as errors">
+                                        <ng-container *ngIf="errors.required">Le nom est requis!</ng-container>
+                                    </mat-error>
+                                </mat-form-field>
+                                <mat-form-field class="invite">
+                                    <mat-label>Prénom</mat-label>
+                                    <input matInput placeholder="Prénom" formControlName="prenom">
+                                    <mat-error *ngIf="formGroup.controls.nom.errors as errors">
+                                        <ng-container *ngIf="errors.required">Le prénom est requis!</ng-container>
+                                    </mat-error>
+                                </mat-form-field>
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Email</mat-label>
+                                    <input type="email" matInput id="email" formControlName="email"
+                                        placeholder="Ex. pat@example.com">
+                                    <mat-error *ngIf="formGroup.controls.email.errors as errors">
+                                        <ng-container *ngIf="errors.required">L'email est requis!</ng-container>
+                                        <ng-container *ngIf="errors.email && !errors.required"> Entrez une adresse
+                                            e-mail valide s'il vous plait! </ng-container>
+                                    </mat-error>
+                                </mat-form-field>
+                                <button mat-mini-fab color="primary" (click)="deleteInvite(i)">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </ng-container>
+                        </div>
+                    </ng-container>
+                    <div>
+                        <button mat-button matStepperPrevious>Précédent</button>
+                        <button mat-button matStepperNext>Suivant</button>
+                    </div>
+
+                </form>
+            </mat-step>
+            <!---
+        <mat-step>
+            <ng-template matStepLabel>Réservez un autre rendez-vous?</ng-template>
+            <section class="example-section">
+                <mat-slide-toggle class="example-margin" [color]="'primary'" [checked]="checked">
+                </mat-slide-toggle>
+            </section>
+            <div>
+                <button mat-button matStepperPrevious>Précédent</button>
+                <button mat-button matStepperNext>Suivant</button>
+            </div>
+        </mat-step>   
+        -->
+            <mat-step>
+                <ng-template matStepLabel>Valider</ng-template>
+                <p>Valider votre demande de rendez-vous ? </p>
+                <div>
+                    <button mat-button matStepperPrevious>Précédent</button>
+                    <button mat-button (click)="stepper.reset()">Annuler</button>
+                    <button mat-button matStepperNext (click)="validerRdv()">Valider</button>
+                </div>
+            </mat-step>
+        </mat-vertical-stepper>
+    </mat-card>
+</ng-container>

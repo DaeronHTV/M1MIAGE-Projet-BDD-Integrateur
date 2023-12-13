@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="13.0.2" class="java.beans.XMLDecoder">
+ <object class="java.util.Properties">
+  <void method="put">
+   <string>mail.pwd</string>
+   <string>ASMRbdd2021</string>
+  </void>
+  <void method="put">
+   <string>mail.key</string>
+   <string>test</string>
+  </void>
+  <void method="put">
+   <string>mail.user</string>
+   <string>visiopad@outlook.com</string>
+  </void>
+ </object>
+</java>

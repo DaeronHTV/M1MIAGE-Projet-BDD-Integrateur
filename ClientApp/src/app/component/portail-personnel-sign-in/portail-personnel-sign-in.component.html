@@ -1,0 +1,65 @@
+<form #registerForm="ngForm" class="form-sign-in" (ngSubmit)="submit(registerForm)">
+
+    <h1>Inscrivez vous !</h1>
+    <div *ngIf="messageError" class="msg-error">
+        {{ messageError }}
+        <button mat-icon-button (click)="messageError = null">
+            <mat-icon>clear</mat-icon>
+        </button>
+    </div>
+    <mat-form-field class="form-group">
+        <mat-label>Nom</mat-label>
+        <input matInput type="text" name="name" [ngModel]="" #name="ngModel" required />
+        <mat-error *ngIf="name.errors as errors">
+          <ng-container *ngIf="errors.required">Ce champs est requis</ng-container>
+        </mat-error>
+    </mat-form-field>
+    
+    <mat-form-field class="form-group">
+        <mat-label>Prénom</mat-label>
+        <input matInput type="text" name="firstName" [ngModel]="" #firstName="ngModel" required />
+        <mat-error *ngIf="firstName.errors as errors">
+          <ng-container *ngIf="errors.required">Ce champs est requis</ng-container>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-group">
+        <mat-label>Numéro de téléphone</mat-label>
+        <input matInput type="text" name="phone" [ngModel]="" #phone="ngModel" required />
+        <mat-error *ngIf="phone.errors as errors">
+          <ng-container *ngIf="errors.required">Ce champs est requis</ng-container>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-group">
+        <mat-label>Adresse e-mail</mat-label>
+        <input matInput type="text" name="email" [ngModel]="" #email="ngModel" required />
+        <mat-error *ngIf="email.errors as errors">
+          <ng-container *ngIf="errors.required">Ce champs est requis</ng-container>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-group">
+        <mat-label>Fonction</mat-label>
+        <input matInput type="text" name="job" [ngModel]="" #job="ngModel" required />
+        <mat-error *ngIf="job.errors as errors">
+          <ng-container *ngIf="errors.required">Ce champs est requis</ng-container>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-group">
+        <mat-label>Mot de passe</mat-label>
+        <input matInput type="password" name="password" [ngModel]="" #password="ngModel" required />
+        <mat-error *ngIf="password.errors as errors">
+          <ng-container *ngIf="errors.required">Ce champs est requis</ng-container>
+        </mat-error>
+    </mat-form-field>
+
+    <button 
+        class="submit-form-button"
+        mat-stroked-button 
+        type="submit"
+    >
+        S'inscrire
+    </button>
+</form>

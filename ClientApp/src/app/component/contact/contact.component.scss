@@ -1,0 +1,15 @@
+.marginAuto{margin-left: auto;margin-right: auto;}
+.Annuler{background-color: red;margin-right: 15px;}
+.bouton{margin-bottom: 15px; color: white;}
+.Enregistrer{background-color: limegreen;}
+.example-form {min-width: 150px;width: 80%;max-width: 80%;}
+.example-form:last-of-type mat-form-field{width: 100%;margin-bottom: 15px;}
+.example-form:last-of-type textarea{width: 100%;min-height: 250px; margin-bottom: 15px;}
+.example-full-width {width: 100%;}
+.contact { border-radius: 5px; min-width: 320px; max-width: 80%;background-color: #e7e7e7;
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);margin-bottom: 10px;margin-top: 20px;}
+@media screen and (min-width:745px){
+    .example-form:first-of-type{display: grid; grid-template-columns: repeat(2,1fr); column-gap: 50px;}
+}
+#choix{width: 80%;text-align: center;}
+.btnConfirmation{background-color: coral;color: white;}

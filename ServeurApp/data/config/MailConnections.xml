@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="13.0.2" class="java.beans.XMLDecoder">
+<!--PARAMETRE DE CONNEXION SORTANT POUR L'UTILISATION DE OUTLOOK-->
+ <object class="java.util.Properties">
+  <void method="put">
+   <string>mail.transport.protocol</string>
+   <string>smtp</string>
+  </void>
+  <void method="put">
+   <string>file.encoding</string>
+   <string>UTF-8</string>
+  </void>
+  <void method="put">
+   <string>mail.smtp.port</string>
+   <string>587</string>
+  </void>
+  <void method="put">
+   <string>mail.smtp.auth</string>
+   <string>true</string>
+  </void>
+  <void method="put">
+   <string>mail.smtp.starttls.enable</string>
+   <string>true</string>
+  </void>
+  <void method="put">
+   <string>mail.smtp.host</string>
+   <string>SMTP.office365.com</string>
+  </void>
+ </object>
+</java>

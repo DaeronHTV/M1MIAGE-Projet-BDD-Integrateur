@@ -1,0 +1,29 @@
+<form #loginForm="ngForm" class="form-sign-in" (ngSubmit)="submit(loginForm)">
+
+    <h1>Connectez vous !</h1>
+    <mat-form-field class="form-group">
+        <mat-label>Adresse Email</mat-label>
+        <input matInput type="email" name="id" [ngModel]="" #id="ngModel" required />
+        <mat-error *ngIf="id.errors as errors">
+          <ng-container *ngIf="errors.required">Ce champs est requis</ng-container>
+          <ng-container *ngIf="!errors.required && errors.email">Email invalide</ng-container>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-group">
+        <mat-label>Mot de passe</mat-label>
+        <input matInput type="password" name="password" [ngModel]="" #password="ngModel" required />
+        <mat-error *ngIf="password.errors as errors">
+          <ng-container *ngIf="errors.required">Ce champs est requis</ng-container>
+        </mat-error>
+    </mat-form-field>
+
+    <button 
+        class="submit-form-button"
+        mat-stroked-button 
+        type="submit"
+    >
+        Se connecter
+    </button>
+</form>
+

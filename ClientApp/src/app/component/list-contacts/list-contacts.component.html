@@ -1,0 +1,22 @@
+<table class="list">
+    <tr>
+        <th>Prénom</th>
+        <th>Nom</th>
+        <th>Email</th>
+        <th>Date création</th>
+        <th>Résident</th>
+        <th>Action</th>
+    </tr>
+    <tr class="list__item" *ngFor="let user of listUsers; let i = index">
+        <td class='list__item__fields'>{{ user.prenom }}</td>
+        <td class='list__item__fields'>{{ user.nom }}</td>
+        <td class='list__item__fields'>{{ user.mail }}</td>
+        <td class='list__item__fields'>{{ user.dateCreation }}</td>
+        <td class='list__item__fields'>
+            <ng-container *ngIf="user.resident != null">OUI</ng-container>
+            <ng-container *ngIf="user.resident == null">NON</ng-container>
+            ( {{ user?.resident?.nom }} {{ user?.resident?.prenom }}, {{ user?.resident?.etablissement }} )
+        </td>
+        <td class='list__item__fields'><button mat-icon-button (click)="valider(i)"><mat-icon>done</mat-icon></button> <button mat-icon-button (click)="supprimer(i)"><mat-icon>delete_forever</mat-icon></button></td>
+    </tr>
+</table>

@@ -1,0 +1,42 @@
+<div class="portal">
+    <ng-container *ngIf="!(authService.user$ | async)">
+        <div class="portal__item">
+            <div>Vous êtes un personnel soignant ?</div>
+            <button mat-stroked-button [routerLink]="['/', AppRoutingEnum.PortalPersonnelSignIn]">Inscrivez vous
+                !</button>
+            <button mat-stroked-button [routerLink]="['/', AppRoutingEnum.PortalPersonnelLogin]">Connectez vous
+                !</button>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="!(authService.user$ | async) && !user">
+        <div class="portal__item">
+            <div>Vous êtes un proche ?</div>
+            <button mat-stroked-button [routerLink]="['/', AppRoutingEnum.PortalFamilleSignIn]">Inscrivez vous
+                !</button>
+            <button mat-stroked-button *ngIf="!(authService.user$ | async)"
+                [routerLink]="['/', AppRoutingEnum.PortalFamilleLogin]">Connectez vous !</button>
+        </div>
+    </ng-container>
+
+</div>
+
+<div class=portalDeco>
+    <ng-container *ngIf="(authService.user$ | async) && (authService.personnel)">
+        <div class="portalDeco__item">
+            <p>Vous êtes connecté en tant que personnel !</p>
+            <button mat-stroked-button (click)="authService.logout()">Déconnexion</button>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="(user?.mail != null)">
+        <div class="portalDeco__item">
+            <p>Vous êtes connecté en tant que proche!</p>
+            <button mat-stroked-button (click)="authService.logout(); user = null">Déconnexion</button>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="(user?.mail != null) || ((authService.user$ | async) && (authService.personnel))">
+        <button mat-stroked-button [routerLink]="['/', AppRoutingEnum.EditProfil]" class="btn">
+            <mat-icon>create</mat-icon><b>Modifier le profil</b>
+        </button>
+    </ng-container>
+</div>

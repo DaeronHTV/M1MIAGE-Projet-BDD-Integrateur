@@ -1,0 +1,66 @@
+<div class="contact marginAuto">
+
+    <form class="example-form marginAuto">
+        <mat-form-field class="example-full-width">
+            <mat-label>Prenom</mat-label>
+            <input type="text" id="prenom" matInput [formControl]="prenom" required>
+            <mat-error *ngIf="prenom.invalid">{{requiredError(prenom)}}</mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label>Nom</mat-label>
+            <input type="text" id="nom" matInput [formControl]="nom" required>
+            <mat-error *ngIf="nom.invalid">{{requiredError(nom)}}</mat-error>
+        </mat-form-field>
+    </form>
+
+    <form class="example-form marginAuto">
+        <mat-form-field class="example-full-width">
+            <mat-label>Adresse e-mail:</mat-label>
+            <input type="email" id="mail" matInput placeholder="Ex. pat@example.com" [formControl]="mail" required>
+            <mat-error *ngIf="mail.invalid">{{requiredError(mail)}}</mat-error>
+            <mat-error *ngIf="mail.invalid">{{validMailError()}}</mat-error>
+        </mat-form-field>
+    </form>
+
+    <form class="example-form marginAuto">
+        <mat-form-field class="example-full-width">
+            <mat-label>Sujet du message</mat-label>
+            <input type="text" id="sujet" matInput [formControl]="sujet" placeholder="Problème - Prise de rendez vous, etc...">
+        </mat-form-field>
+    </form>
+    <form class="example-form marginAuto">
+        <mat-form-field appearance="fill">
+            <mat-label>Votre message</mat-label>
+            <textarea matInput [formControl]="message" required></textarea>
+            <mat-error *ngIf="message.invalid">{{requiredError(message)}}</mat-error>
+        </mat-form-field>
+    </form>
+    
+    <div id="choix" class="marginAuto">
+        <button class="Annuler bouton" mat-raised-button data-toggle="modal" data-target="#annulerMail">Annuler</button>
+        <button class="Enregistrer bouton" mat-raised-button (click)="envoieMail()">Enregistrer</button>
+    </div>
+</div>
+
+<div class="modal fade" id="annulerMail" tabindex="-1" role="dialog" aria-labelledby="annulerMailLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="annulerMailLabel">Annuler envoie mail ?</h2>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Voulez-vous vraiment annuler l'envoie de votre mail ?<br/>
+          <i>Vous serez redirigé vers l'accueil. Toutes les données déjà renseignées seront perdues.</i>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+          <!--<button type="button" class="btn btnConfirmation" data-dismiss="modal" (click)="retourAccueil()">Confirmer l'annulation</button>
+          -->
+          </div>
+      </div>
+    </div>
+  </div>

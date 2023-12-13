@@ -1,0 +1,51 @@
+.portal {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 130px;
+
+  &__item {
+    flex: 0 0 48%;
+    min-height: 5rem;
+    border-radius: 0.4rem;
+    text-align: center;
+    padding: 0.5rem;
+    background-color: #f7c9a3b5;
+  }
+}
+
+.portal button {
+  margin-right: 10px;
+}
+
+.portalDeco {
+  display: flex;
+  justify-content: center;
+
+  &__item {
+    min-height: 5rem;
+    min-width: 500px;
+    border-radius: 0.4rem;
+    text-align: center;
+    padding: 0.5rem;
+    background-color: #f7c9a3b5;
+  }
+
+  &__item p {
+    font: bold large serif;
+    font-size: x-large;
+  }
+
+  &__item button {
+    background-color: coral;
+    color: white;
+  }
+}
+
+.btn {
+  margin-top: auto;
+  margin-bottom: auto;
+  height: 50px;
+  margin-left: 20px;
+  background-color: coral;
+  color: white;
+}
